@@ -1,0 +1,44 @@
+.midnightblue {
+	background: midnightblue;
+	color: var(--white);
+}
+
+.mediumblue {
+	background: mediumblue;
+	color: var(--white);
+}
+
+.dodgerblue {
+	background: #0074e8;
+	color: var(--white);
+}
+
+.mediumturquoise {
+	background: mediumturquoise;
+	color: var(--black);
+}
+
+.green {
+	background: green;
+	color: var(--white);
+}
+
+.gold {
+	background: gold;
+	color: var(--black);
+}
+
+.orange {
+	background: orange;
+	color: var(--black);
+}
+
+.crimson {
+	background: crimson;
+	color: var(--white);
+}
+
+.darkred {
+	background: darkred;
+	color: var(--white);
+}

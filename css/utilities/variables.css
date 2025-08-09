@@ -1,0 +1,14 @@
+:root {
+	/* Body background. */
+	--day-clear: hsl(235deg 35% 80%);
+	--night-clear: hsl(235deg 50% 20%);
+	--day-storm: hsl(235deg 0% 80%);
+	--night-storm: hsl(235deg 5% 20%);
+	--day-rain: hsl(235deg 15% 80%);
+	--night-rain: hsl(235deg 15% 20%);
+
+	/* Misc. */
+	--black: #000;
+	--gray: #ccc;
+	--white: #fff;
+}

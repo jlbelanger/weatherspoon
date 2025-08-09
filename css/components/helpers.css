@@ -1,0 +1,16 @@
+.flex-columns {
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.flex-rows {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.hide {
+	display: none;
+}

@@ -1,0 +1,58 @@
+#week {
+	display: flex;
+	justify-content: space-evenly;
+	margin-top: .5rem;
+	text-align: center;
+
+	@media (--tablet-landscape-up) {
+		margin-top: 1rem;
+	}
+}
+
+.day {
+	flex: 1 1 0;
+}
+
+.day_day {
+	padding: .25rem .5rem;
+	text-transform: uppercase;
+}
+
+.day_day--alert {
+	background: crimson;
+	color: var(--white);
+}
+
+.day_weather {
+	--svg-size: 2.25rem;
+
+	height: var(--svg-size);
+	line-height: 1;
+	margin-top: .25rem;
+	position: relative;
+
+	svg {
+		height: var(--svg-size);
+		left: 50%;
+		margin-top: calc(var(--svg-size) * -.5);
+		position: absolute;
+		top: 50%;
+		width: var(--svg-size);
+
+		&:first-child {
+			margin-left: calc(var(--svg-size) * -.625);
+		}
+
+		&:last-child {
+			margin-left: calc(var(--svg-size) * -.125);
+		}
+
+		&:first-child:last-child {
+			margin-left: calc(var(--svg-size) * -.5);
+		}
+	}
+}
+
+.day_temperature {
+	margin-top: .5rem;
+}

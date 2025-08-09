@@ -1,0 +1,10 @@
+.DS_Store
+.env
+.eslintcache
+.gitcommit
+*.log
+/build
+/node_modules
+/vendor
+build.zip
+TODO.md

@@ -1,0 +1,19 @@
+#date {
+	display: none;
+
+	@media (--tablet-landscape-up) {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+#weekday {
+	text-transform: uppercase;
+}
+
+#day {
+	font-size: 2rem;
+	font-weight: 300;
+	line-height: 1;
+}

@@ -1,0 +1,8 @@
+#graph {
+	margin-top: .5rem;
+	max-height: 50vh;
+
+	@media (--tablet-landscape-up) {
+		margin-top: 1rem;
+	}
+}

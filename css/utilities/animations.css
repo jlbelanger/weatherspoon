@@ -1,0 +1,19 @@
+@keyframes snowflake {
+	from {
+		opacity: .5;
+		transform: translateY(0) rotate(0deg);
+	}
+
+	to {
+		opacity: .1;
+		transform: translateY(100vh) rotate(360deg);
+	}
+}
+
+@keyframes raindrop {
+	to { transform: translateY(100vh); }
+}
+
+@keyframes cloudpuff {
+	to { left: 100vw; }
+}

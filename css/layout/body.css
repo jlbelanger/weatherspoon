@@ -1,0 +1,43 @@
+body {
+	align-content: center;
+	background: var(--day-clear);
+	font-family: Fredoka, sans-serif;
+	margin: 0;
+	min-height: 100vh;
+	padding: .5rem;
+
+	@media (--tablet-landscape-up) {
+		padding: 1rem;
+	}
+}
+
+.body--animate {
+	transition-duration: 10s;
+	transition-property: background,color;
+	transition-timing-function: ease-in-out;
+}
+
+.body--night {
+	background: var(--night-clear);
+	color: var(--white);
+}
+
+.body--storm {
+	background: var(--day-storm);
+}
+
+.body--night.body--storm {
+	background: var(--night-storm);
+	color: var(--white);
+}
+
+.body--rain,
+.body--snow {
+	background: var(--day-rain);
+}
+
+.body--night.body--rain,
+.body--night.body--snow {
+	background: var(--daynight-rain);
+	color: var(--white);
+}

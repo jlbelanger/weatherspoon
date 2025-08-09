@@ -1,0 +1,33 @@
+svg {
+	z-index: 2;
+}
+
+svg.sun,
+svg.moon {
+	fill: gold;
+}
+
+svg.cloud {
+	fill: mediumturquoise;
+}
+
+svg.rain {
+	fill: dodgerblue;
+}
+
+svg.thunder {
+	fill: orange;
+}
+
+svg.snow {
+	fill: ivory;
+}
+
+svg.haze,
+svg.unknown {
+	fill: gray;
+}
+
+svg:last-child {
+	z-index: 1;
+}

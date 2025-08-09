@@ -1,0 +1,16 @@
+{
+	"id": "/",
+	"name": "Weatherspoon",
+	"description": "Weather forecasts.",
+	"icons": [
+		{
+			"src": "icon.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	],
+	"start_url": "/",
+	"display": "standalone",
+	"theme_color": "#5158a9",
+	"background_color": "#5158a9"
+}

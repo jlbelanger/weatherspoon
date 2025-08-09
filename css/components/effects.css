@@ -1,0 +1,54 @@
+#effects {
+	height: 100%;
+	left: 0;
+	opacity: .25;
+	overflow: hidden;
+	pointer-events: none;
+	position: fixed;
+	top: 0;
+	width: 100%;
+
+	&.effects--cloudpuff {
+		filter: blur(.5rem);
+	}
+
+	&::after {
+		background: linear-gradient(rgb(0 0 0 / 0%), rgb(0 0 0 / 100%));
+		bottom: 0;
+		content: '';
+		display: block;
+		height: 50vh;
+		left: 0;
+		position: fixed;
+		right: 0;
+		z-index: -1;
+	}
+}
+
+.precipitation {
+	background-repeat: no-repeat;
+	bottom: 100%;
+	position: absolute;
+	z-index: -2;
+}
+
+.raindrop {
+	animation: raindrop cubic-bezier(.550, .085, .680, .530) infinite;
+	background-image: url('/assets/img/rain.svg');
+	filter: invert(1);
+}
+
+.snowflake {
+	animation: snowflake linear infinite;
+
+	&::after {
+		content: '*';
+		display: block;
+	}
+}
+
+.cloudpuff {
+	animation: cloudpuff linear infinite;
+	background-image: url('/assets/img/cloud.svg');
+	filter: invert(1);
+}
