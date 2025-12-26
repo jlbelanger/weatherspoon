@@ -6,6 +6,7 @@ import annotationPlugin from 'chartjs-plugin-annotation';
 import ChartJS from 'chart.js/auto';
 import { DateTime } from 'luxon';
 import { effect } from './effects.js';
+import zoomPlugin from 'chartjs-plugin-zoom';
 
 const timeLabel = (value) => (
 	DateTime.fromMillis(value)
@@ -351,6 +352,7 @@ const updateWeather = () => {
 
 			ChartJS.register(annotationPlugin);
 			ChartJS.register(sunBackgroundPlugin);
+			ChartJS.register(zoomPlugin);
 
 			const minY = Math.min(...temperatureData);
 			const maxY = Math.max(...temperatureData);
@@ -397,6 +399,25 @@ const updateWeather = () => {
 									}
 									return `${tooltipItem.dataset.label}: ${tooltipItem.formattedValue}`;
 								},
+							},
+						},
+						zoom: {
+							limits: {
+								x: {
+									min: new Date(labels[0]).getTime(),
+									max: new Date(labels[labels.length - 1]).getTime(),
+									minRange: 1,
+								},
+								'y-temperature': {
+									min: minY,
+									max: maxY,
+								},
+							},
+							pan: {
+								enabled: true,
+								mode: 'x',
+								threshold: 5,
+								scaleMode: 'x',
 							},
 						},
 					},
@@ -469,6 +490,10 @@ const updateWeather = () => {
 			};
 
 			window.chart = new ChartJS(document.getElementById('graph').getContext('2d'), options);
+
+			const newMaxDateObject = new Date();
+			newMaxDateObject.setHours(newMaxDateObject.getHours() + 18);
+			window.chart.zoomScale('x', { min: now.getTime(), max: newMaxDateObject.getTime() });
 		});
 };
 

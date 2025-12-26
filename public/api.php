@@ -23,7 +23,7 @@ $tomorrowYMD = $tomorrow->format('Y-m-d');
 
 $now = time();
 $thresholdPast = 6 * 60 * 60; // 6 hours in seconds.
-$thresholdFuture = 24 * 60 * 60; // 24 hours in seconds.
+$thresholdFuture = 48 * 60 * 60; // 24 hours in seconds.
 
 $output = [
 	'forecast' => [],
