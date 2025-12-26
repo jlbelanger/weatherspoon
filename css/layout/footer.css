@@ -1,21 +1,10 @@
 #footer {
 	color: #4e4e4e;
+	display: flex;
+	justify-content: space-between;
 	margin-top: 1rem;
 
 	.body--night & {
 		color: #adadad;
-	}
-
-	p + p {
-		margin-top: 1rem;
-	}
-
-	@media (--tablet-landscape-up) {
-		display: flex;
-		justify-content: space-between;
-
-		p + p {
-			margin-top: 0;
-		}
 	}
 }

@@ -7,6 +7,12 @@ import Chart from 'chart.js/auto';
 import { DateTime } from 'luxon';
 import { effect } from './effects';
 
+const timeLabel = (value) => (
+	DateTime.fromMillis(value)
+		.toFormat('ha')
+		.toLowerCase()
+);
+
 const aqhiColor = (context) => {
 	if (!context.chart.chartArea) {
 		return 'transparent';
@@ -198,9 +204,10 @@ const updateWeather = () => {
 				}
 				const { right, left } = context.chart.chartArea;
 				const temperatureGradient = context.chart.ctx.createLinearGradient(left, 0, right, 0);
-				const num = temperatureData.length - 1;
 				temperatureData.forEach((t, i) => {
-					temperatureGradient.addColorStop(Math.min(i / num, 1), tempScale(t));
+					const xPixel = context.chart.scales.x.getPixelForValue(new Date(labels[i]));
+					const stop = (xPixel - left) / (right - left);
+					temperatureGradient.addColorStop(Math.min(Math.max(stop, 0), 1), tempScale(t));
 				});
 				return temperatureGradient;
 			};
@@ -289,6 +296,7 @@ const updateWeather = () => {
 					yAxisID: 'y-temperature',
 					pointRadius: 6,
 					pointHoverRadius: 10,
+					pointBackgroundColor: temperatureData.map(tempScale),
 				},
 				{
 					label: 'Air Quality',
@@ -344,6 +352,9 @@ const updateWeather = () => {
 			Chart.register(annotationPlugin);
 			Chart.register(sunBackgroundPlugin);
 
+			const minY = Math.min(...temperatureData);
+			const maxY = Math.max(...temperatureData);
+
 			const options = {
 				type: 'line',
 				plugins: [sunBackgroundPlugin],
@@ -376,9 +387,13 @@ const updateWeather = () => {
 						},
 						tooltip: {
 							callbacks: {
+								title: (tooltipItems) => (timeLabel(tooltipItems[0].parsed.x)),
 								label: (tooltipItem) => {
 									if (tooltipItem.dataset.label === 'Temperature') {
 										return `${tooltipItem.dataset.label}: ${tooltipItem.formattedValue}° C`;
+									}
+									if (tooltipItem.dataset.label === 'Precipitation') {
+										return `${tooltipItem.dataset.label}: ${tooltipItem.formattedValue * 10}%`;
 									}
 									return `${tooltipItem.dataset.label}: ${tooltipItem.formattedValue}`;
 								},
@@ -393,14 +408,17 @@ const updateWeather = () => {
 								color: gridColor,
 							},
 							ticks: {
+								callback: (value) => (timeLabel(value)),
 								color: textColor,
 								stepSize: 3,
+								maxRotation: 0,
+								minRotation: 0,
 							},
 							time: {
 								unit: 'hour',
-								tooltipFormat: 'h a',
+								tooltipFormat: 'ha',
 								displayFormats: {
-									hour: 'h a',
+									hour: 'ha',
 								},
 							},
 							title: {
@@ -410,16 +428,20 @@ const updateWeather = () => {
 						'y-temperature': {
 							type: 'linear',
 							position: 'left',
+							min: minY,
+							max: maxY,
 							grid: {
 								drawOnChartArea: false,
 							},
 							ticks: {
 								color: textColor,
 								callback: (value) => (`${value}°`),
+								precision: 0,
+								stepSize: 1,
 							},
 							title: {
 								color: textColor,
-								display: true,
+								display: false,
 								text: 'Temperature',
 							},
 						},
@@ -438,7 +460,7 @@ const updateWeather = () => {
 							},
 							title: {
 								color: textColor,
-								display: true,
+								display: false,
 								text: 'AQHI / UV / Precipitation',
 							},
 						},

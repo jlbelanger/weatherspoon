@@ -2,7 +2,11 @@
 	display: flex;
 	flex: 1 1 auto;
 	justify-content: center;
-	padding: 0 .5rem;
+	padding: 0 .5rem 0 0;
+
+	@media (--tablet-landscape-up) {
+		padding: 0 .5rem;
+	}
 }
 
 .alert {
@@ -28,11 +32,19 @@
 	& + .alert {
 		margin-top: .25rem;
 	}
+
+	span {
+		display: block;
+	}
 }
 
 .alert_title {
-	font-size: 1.5rem;
+	font-size: 1.25rem;
 	font-weight: 500;
 	margin-right: .25rem;
 	text-transform: uppercase;
+
+	@media (--tablet-landscape-up) {
+		font-size: 1.5rem;
+	}
 }
