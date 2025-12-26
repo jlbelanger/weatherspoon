@@ -1,11 +1,11 @@
-import 'chartjs-adapter-luxon'; // eslint-disable-line import/no-unresolved
-import { aqhiScale, tempScale, uvIndexScale } from './scales';
-import { convertTo12Hour, isDark, updateTime } from './time';
-import { loadIcons, svgPoint, weatherIcons } from './icons';
+import 'chartjs-adapter-luxon';
+import { aqhiScale, tempScale, uvIndexScale } from './scales.js';
+import { convertTo12Hour, isDark, updateTime } from './time.js';
+import { loadIcons, svgPoint, weatherIcons } from './icons.js';
 import annotationPlugin from 'chartjs-plugin-annotation';
-import Chart from 'chart.js/auto';
+import ChartJS from 'chart.js/auto';
 import { DateTime } from 'luxon';
-import { effect } from './effects';
+import { effect } from './effects.js';
 
 const timeLabel = (value) => (
 	DateTime.fromMillis(value)
@@ -75,7 +75,7 @@ const isDarkX = (x, sunriseX, sunsetX, sunrise2X) => (
 );
 
 const updateWeather = () => {
-	fetch(`/api.php?timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}`)
+	fetch(`/api.php?timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}`) // eslint-disable-line new-cap
 		.then((response) => (response.json()))
 		.then((response) => {
 			const now = new Date();
@@ -108,10 +108,10 @@ const updateWeather = () => {
 			const currentAqhiColor = aqhiScale(currentForecast ? currentForecast.aqhi : null);
 			elAqhi.textContent = currentForecast ? currentForecast.aqhi : '?';
 			elAqhi.className = `label ${aqhiScale(currentForecast ? currentForecast.aqhi : null)}`;
-			if (currentAqhiColor !== 'green') {
-				elAqhiContainer.className = '';
-			} else {
+			if (currentAqhiColor === 'green') {
 				elAqhiContainer.className = 'hide';
+			} else {
+				elAqhiContainer.className = '';
 			}
 
 			// Show current UV.
@@ -120,10 +120,10 @@ const updateWeather = () => {
 			const currentUvColor = uvIndexScale(currentForecast ? currentForecast.uv : null);
 			elUv.textContent = currentForecast ? currentForecast.uv : '?';
 			elUv.className = `label ${currentUvColor}`;
-			if (currentUvColor !== 'green') {
-				elUvContainer.className = '';
-			} else {
+			if (currentUvColor === 'green') {
 				elUvContainer.className = 'hide';
+			} else {
+				elUvContainer.className = '';
 			}
 
 			// Show current temperature.
@@ -275,9 +275,9 @@ const updateWeather = () => {
 				beforeDraw,
 			};
 
-			Chart.defaults.animation = false;
-			Chart.defaults.font.family = 'Fredoka';
-			Chart.defaults.font.size = 14;
+			ChartJS.defaults.animation = false;
+			ChartJS.defaults.font.family = 'Fredoka';
+			ChartJS.defaults.font.size = 14;
 
 			let textColor = '#000';
 			let gridColor = '#00000022';
@@ -349,8 +349,8 @@ const updateWeather = () => {
 				return;
 			}
 
-			Chart.register(annotationPlugin);
-			Chart.register(sunBackgroundPlugin);
+			ChartJS.register(annotationPlugin);
+			ChartJS.register(sunBackgroundPlugin);
 
 			const minY = Math.min(...temperatureData);
 			const maxY = Math.max(...temperatureData);
@@ -468,7 +468,7 @@ const updateWeather = () => {
 				},
 			};
 
-			window.chart = new Chart(document.getElementById('graph').getContext('2d'), options);
+			window.chart = new ChartJS(document.getElementById('graph').getContext('2d'), options);
 		});
 };
 

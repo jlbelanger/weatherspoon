@@ -1,6 +1,6 @@
-import { aqhiScale, uvIndexScale } from './scales';
+import { aqhiScale, uvIndexScale } from './scales.js';
 
-const loadIcon = async (filename, label = '') => {
+const loadIcon = (filename, label = '') => {
 	fetch(`/assets/img/${filename}`)
 		.then((response) => (response.text()))
 		.then((svgText) => {

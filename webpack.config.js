@@ -1,14 +1,14 @@
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
-const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+import BrowserSyncPlugin from 'browser-sync-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import path from 'path';
+import TerserPlugin from 'terser-webpack-plugin';
+import { WebpackManifestPlugin } from 'webpack-manifest-plugin';
 
-require('dotenv').config();
+process.loadEnvFile();
 
-module.exports = {
+export default {
 	mode: 'production',
 	devtool: false,
 	entry: {
@@ -17,7 +17,7 @@ module.exports = {
 	output: {
 		chunkLoadingGlobal: 'app',
 		filename: 'assets/js/[name].min.js?[contenthash]',
-		path: path.resolve(__dirname, 'build'),
+		path: path.resolve(process.cwd(), 'build'),
 		publicPath: '/',
 	},
 	plugins: [
