@@ -14,12 +14,12 @@
 		"url": "https://github.com/jlbelanger/weatherspoon.git"
 	},
 	"scripts": {
-		"build": "rm -rf build/ && node_modules/.bin/webpack --mode=production",
-		"lint": "yarn lint:css && yarn lint:js",
-		"lint:css": "node_modules/.bin/stylelint 'css/**/*.css'",
-		"lint:js": "node_modules/.bin/eslint .",
+		"build": "rm -rf build/ && npx webpack --mode=production",
+		"lint": "npm run lint:css && npm run lint:js",
+		"lint:css": "npx stylelint 'css/**/*.css'",
+		"lint:js": "npx eslint .",
 		"lint:php": "./vendor/bin/phpcs",
-		"start": "node_modules/.bin/update-browserslist-db && node_modules/.bin/webpack --watch"
+		"start": "npx update-browserslist-db && npx webpack --watch"
 	},
 	"dependencies": {
 		"@csstools/postcss-global-data": "^3.1.0",

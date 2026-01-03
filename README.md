@@ -8,7 +8,7 @@ Weatherspoon is a weather forecast website. [View the site](https://weatherspoon
 
 - [Composer](https://getcomposer.org/)
 - [Git](https://git-scm.com/)
-- [Yarn](https://classic.yarnpkg.com/en/docs/install)
+- [Node](https://nodejs.org/)
 - Web server with PHP
 
 ### Setup
@@ -22,7 +22,7 @@ cd weatherspoon
 ### Run
 
 ``` bash
-yarn start
+npm start
 ```
 
 Your browser should automatically open https://localhost:3000/
@@ -31,7 +31,7 @@ Your browser should automatically open https://localhost:3000/
 
 ``` bash
 ./vendor/bin/phpcs
-yarn lint
+npm run lint
 ```
 
 ### Generate splash screens
