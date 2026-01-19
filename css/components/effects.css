@@ -1,7 +1,7 @@
 #effects {
 	height: 100%;
 	left: 0;
-	opacity: .25;
+	opacity: 0.25;
 	overflow: hidden;
 	pointer-events: none;
 	position: fixed;
@@ -9,7 +9,7 @@
 	width: 100%;
 
 	&.effects--cloudpuff {
-		filter: blur(.5rem);
+		filter: blur(0.5rem);
 	}
 
 	&::after {
@@ -33,7 +33,7 @@
 }
 
 .raindrop {
-	animation: raindrop cubic-bezier(.550, .085, .680, .530) infinite;
+	animation: raindrop cubic-bezier(0.55, 0.085, 0.68, 0.53) infinite;
 	background-image: url('/assets/img/rain.svg');
 	filter: invert(1);
 }

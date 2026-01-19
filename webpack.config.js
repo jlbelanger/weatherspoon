@@ -45,27 +45,24 @@ export default {
 				concurrency: 100,
 			},
 		}),
-		new BrowserSyncPlugin({
-			proxy: process.env.APP_URL,
-			port: 3000,
-			files: [
-				'css/**/*',
-				'includes/**/*',
-				'js/**/*',
-				'public/**/*',
-			],
-			snippetOptions: {
-				rule: {
-					match: /<body[^>]*>/i,
-					fn: (snippet, match) => (
-						// Allow Browsersync to work with Content-Security-Policy without script-src 'unsafe-inline'.
-						`${match}${snippet.replace('id=', 'nonce="browser-sync" id=')}`
-					),
+		new BrowserSyncPlugin(
+			{
+				proxy: process.env.APP_URL,
+				port: 3000,
+				files: ['css/**/*', 'includes/**/*', 'js/**/*', 'public/**/*'],
+				snippetOptions: {
+					rule: {
+						match: /<body[^>]*>/i,
+						fn: (snippet, match) =>
+							// Allow Browsersync to work with Content-Security-Policy without script-src 'unsafe-inline'.
+							`${match}${snippet.replace('id=', 'nonce="browser-sync" id=')}`,
+					},
 				},
 			},
-		}, {
-			reload: false,
-		}),
+			{
+				reload: false,
+			},
+		),
 	],
 	module: {
 		rules: [
@@ -93,9 +90,7 @@ export default {
 									[
 										'@csstools/postcss-global-data',
 										{
-											files: [
-												'./css/utilities/breakpoints.css',
-											],
+											files: ['./css/utilities/breakpoints.css'],
 										},
 									],
 									'postcss-preset-env',

@@ -1,6 +1,4 @@
-const randomBetween = (min, max) => (
-	Math.floor(Math.random() * (max - min + 1) + min)
-);
+const randomBetween = (min, max) => Math.floor((Math.random() * (max - min + 1)) + min); // prettier-ignore
 
 export const effect = (className) => {
 	const effects = document.getElementById('effects');
@@ -26,7 +24,7 @@ export const effect = (className) => {
 	for (let i = 0; i < num; i += 1) {
 		const drop = document.createElement('div');
 		drop.className = `precipitation ${className}`;
-		drop.style.animationDelay = `${(Math.random() * 5)}s`;
+		drop.style.animationDelay = `${Math.random() * 5}s`;
 		let size;
 		let duration;
 
@@ -65,7 +63,7 @@ export const effect = (className) => {
 			drop.style.fontSize = `${randomBetween(12, 32)}px`;
 		}
 
-		drop.style.animationDuration = `${(duration + Math.random())}s`;
+		drop.style.animationDuration = `${duration + Math.random()}s`;
 
 		effects.appendChild(drop);
 	}

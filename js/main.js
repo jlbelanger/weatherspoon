@@ -8,11 +8,8 @@ import { DateTime } from 'luxon';
 import { effect } from './effects.js';
 import zoomPlugin from 'chartjs-plugin-zoom';
 
-const timeLabel = (value) => (
-	DateTime.fromMillis(value)
-		.toFormat('ha')
-		.toLowerCase()
-);
+// eslint-disable-next-line @stylistic/newline-per-chained-call
+const timeLabel = (value) => DateTime.fromMillis(value).toFormat('ha').toLowerCase();
 
 const aqhiColor = (context) => {
 	if (!context.chart.chartArea) {
@@ -71,19 +68,17 @@ const bodyClass = (weather) => {
 	return 'clear';
 };
 
-const isDarkX = (x, sunriseX, sunsetX, sunrise2X) => (
-	(x < sunriseX) || (sunsetX < x && x < sunrise2X)
-);
+const isDarkX = (x, sunriseX, sunsetX, sunrise2X) => x < sunriseX || (sunsetX < x && x < sunrise2X);
 
 const updateWeather = () => {
 	fetch(`/api.php?timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}`) // eslint-disable-line new-cap
-		.then((response) => (response.json()))
+		.then((response) => response.json())
 		.then((response) => {
 			const now = new Date();
 			const currentTimestamp = DateTime.local().toISO({ precision: 'seconds' });
 			const currentHour24 = now.getHours();
 			const currentHour12 = convertTo12Hour(currentHour24);
-			const currentForecast = response.forecast.find((f) => (f.hour === currentHour12));
+			const currentForecast = response.forecast.find((f) => f.hour === currentHour12);
 
 			const timeOfDay = isDark(currentTimestamp, response) ? 'night' : 'day';
 			const currentWeather = bodyClass(currentForecast ? currentForecast.weather : null);
@@ -145,7 +140,7 @@ const updateWeather = () => {
 			const alerts = document.getElementById('alerts');
 			alerts.innerText = '';
 			response.alerts.forEach((alert) => {
-				const isActive = (alert.start <= currentTimestamp) && (currentTimestamp <= alert.end);
+				const isActive = alert.start <= currentTimestamp && currentTimestamp <= alert.end;
 
 				if (isActive) {
 					const alertContainer = document.createElement('div');
@@ -193,10 +188,11 @@ const updateWeather = () => {
 				week.appendChild(weekdayContainer);
 			});
 
-			const labels = response.forecast.map((h) => (h.datetime));
-			const temperatureData = response.forecast.map((h) => (h.temperature));
-			const aqhiData = response.forecast.map((h) => (h.aqhi));
-			const uvData = response.forecast.map((h) => (h.uv));
+			const labels = response.forecast.map((h) => h.datetime);
+			const temperatureData = response.forecast.map((h) => h.temperature);
+			const aqhiData = response.forecast.map((h) => h.aqhi);
+			const uvData = response.forecast.map((h) => h.uv);
+			// eslint-disable-next-line @stylistic/no-extra-parens
 			const precipitationData = response.forecast.map((h) => (h.precipitation >= 30 ? h.precipitation / 10 : 0));
 
 			const temperatureColor = (context) => {
@@ -241,7 +237,7 @@ const updateWeather = () => {
 				if (sunriseX > scales.x.min && sunriseX < scales.x.max) {
 					const sunriseStop = (scales.x.getPixelForValue(sunriseX) - left) / width;
 					gradient.addColorStop(sunriseStop, nightColor);
-					if ((sunriseStop + offset) < 1) {
+					if (sunriseStop + offset < 1) {
 						gradient.addColorStop(sunriseStop + offset, dayColor);
 					}
 				}
@@ -249,7 +245,7 @@ const updateWeather = () => {
 				if (sunsetX > scales.x.min && sunsetX < scales.x.max) {
 					const sunsetStop = (scales.x.getPixelForValue(sunsetX) - left) / width;
 					gradient.addColorStop(sunsetStop, dayColor);
-					if ((sunsetStop + offset) < 1) {
+					if (sunsetStop + offset < 1) {
 						gradient.addColorStop(sunsetStop + offset, nightColor);
 					}
 				}
@@ -257,7 +253,7 @@ const updateWeather = () => {
 				if (sunrise2X > scales.x.min && sunrise2X < scales.x.max) {
 					const sunrise2Stop = (scales.x.getPixelForValue(sunrise2X) - left) / width;
 					gradient.addColorStop(sunrise2Stop, nightColor);
-					if ((sunrise2Stop + offset) < 1) {
+					if (sunrise2Stop + offset < 1) {
 						gradient.addColorStop(sunrise2Stop + offset, dayColor);
 					}
 				}
@@ -389,7 +385,7 @@ const updateWeather = () => {
 						},
 						tooltip: {
 							callbacks: {
-								title: (tooltipItems) => (timeLabel(tooltipItems[0].parsed.x)),
+								title: (tooltipItems) => timeLabel(tooltipItems[0].parsed.x),
 								label: (tooltipItem) => {
 									if (tooltipItem.dataset.label === 'Temperature') {
 										return `${tooltipItem.dataset.label}: ${tooltipItem.formattedValue}° C`;
@@ -429,7 +425,7 @@ const updateWeather = () => {
 								color: gridColor,
 							},
 							ticks: {
-								callback: (value) => (timeLabel(value)),
+								callback: (value) => timeLabel(value),
 								color: textColor,
 								stepSize: 3,
 								maxRotation: 0,
@@ -456,7 +452,7 @@ const updateWeather = () => {
 							},
 							ticks: {
 								color: textColor,
-								callback: (value) => (`${value}°`),
+								callback: (value) => `${value}°`,
 								precision: 0,
 								stepSize: 1,
 							},

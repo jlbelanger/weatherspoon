@@ -8,10 +8,9 @@ export const updateTime = () => {
 	const now = new Date();
 	document.getElementById('weekday').textContent = now.toLocaleDateString(window.locale, { weekday: 'short' });
 	document.getElementById('day').textContent = now.toLocaleDateString(window.locale, { day: 'numeric' });
-	document.getElementById('time').textContent = now.toLocaleString(window.locale, { hour: 'numeric', minute: '2-digit', hour12: true })
+	document.getElementById('time').textContent = now
+		.toLocaleString(window.locale, { hour: 'numeric', minute: '2-digit', hour12: true })
 		.replace(/[^0-9:]+/g, '');
 };
 
-export const isDark = (hour, response) => (
-	hour < response.sunrise || hour > response.sunset
-);
+export const isDark = (hour, response) => hour < response.sunrise || hour > response.sunset;

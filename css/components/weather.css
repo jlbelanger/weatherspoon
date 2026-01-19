@@ -8,17 +8,17 @@
 	svg {
 		height: var(--svg-size);
 		left: 50%;
-		margin-top: calc(var(--svg-size) * -.5);
+		margin-top: calc(var(--svg-size) * -0.5);
 		position: absolute;
 		top: 50%;
 		width: var(--svg-size);
 
 		&:last-child {
-			margin-left: calc(var(--svg-size) * -.25);
+			margin-left: calc(var(--svg-size) * -0.25);
 		}
 
 		&:first-child:last-child {
-			margin-left: calc(var(--svg-size) * -.5);
+			margin-left: calc(var(--svg-size) * -0.5);
 		}
 	}
 

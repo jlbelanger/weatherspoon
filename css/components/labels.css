@@ -1,11 +1,11 @@
 .label {
 	background: var(--gray);
-	border-radius: .5rem;
+	border-radius: 0.5rem;
 	color: var(--white);
 	display: inline-block;
-	padding: .125rem .25rem;
+	padding: 0.125rem 0.25rem;
 
 	@media (--tablet-landscape-up) {
-		padding: .25rem .5rem;
+		padding: 0.25rem 0.5rem;
 	}
 }

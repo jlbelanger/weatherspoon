@@ -8,7 +8,37 @@
 	"rules": {
 		"attr-name-style": ["error", "dash"],
 		"attr-no-dup": true,
-		"attr-order": ["error", ["alt", "aria-labelledby", "autocapitalize", "autocomplete", "charset", "class", "colspan", "for", "height", "href", "id", "lang", "loading", "maxlength", "name", "placeholder", "readonly", "rows", "size", "src", "style", "target", "title", "type", "value", "width"]],
+		"attr-order": [
+			"error",
+			[
+				"alt",
+				"aria-labelledby",
+				"autocapitalize",
+				"autocomplete",
+				"charset",
+				"class",
+				"colspan",
+				"for",
+				"height",
+				"href",
+				"id",
+				"lang",
+				"loading",
+				"maxlength",
+				"name",
+				"placeholder",
+				"readonly",
+				"rows",
+				"size",
+				"src",
+				"style",
+				"target",
+				"title",
+				"type",
+				"value",
+				"width"
+			]
+		],
 		"attr-quote-style": ["error", "double"],
 		"attr-req-value": true,
 		"attr-validate": true,
@@ -44,7 +74,7 @@
 		"tag-close": true,
 		"tag-name-lowercase": true,
 		"tag-name-match": true,
-		"tag-self-close": ["error", "never"],
+		"tag-self-close": ["error", "always"],
 		"title-no-dup": true
 	}
 }

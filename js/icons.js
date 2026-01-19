@@ -2,7 +2,7 @@ import { aqhiScale, uvIndexScale } from './scales.js';
 
 const loadIcon = (filename, label = '') => {
 	fetch(`/assets/img/${filename}`)
-		.then((response) => (response.text()))
+		.then((response) => response.text())
 		.then((svgText) => {
 			const parser = new DOMParser();
 			const svgDoc = parser.parseFromString(svgText, 'image/svg+xml');
